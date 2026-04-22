@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cyber Security – Password Hygiene</title>
+ 
+<!-- Font Awesome Icons -->
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --blue-light: #eef4fc;
+  --blue-main: #3a7bd5;
+  --blue-dark: #1e3c72;
+  --orange: #ff9f43;
+  --text-dark: #2c3e50;
+  --green: #438f52;
+  --lightb: #3d9dd4;
+}
+ 
+/* RESET */
+* { box-sizing: border-box; }
+ 
+body {
+  font-family: "Inter","Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  margin: 0;
+  background: var(--blue-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+ 
+/* HERO */
+.hero {
+  margin-bottom: 50px;
+  position: relative;
+  height: 380px;
+  background: url("cybersecurityimage.jpg") center / cover no-repeat;
+  background-attachment: fixed;
+}
+ 
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(30, 60, 114, 0.75),
+    rgba(58, 123, 213, 0.75)
+  );
+}
+ 
+header {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+ 
+.header-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px) saturate(140%);
+  padding: 45px 35px;
+  border-radius: 20px;
+  text-align: center;
+  color: rgb(236, 236, 236);
+  max-width: 760px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+  animation: fadeDown .8s ease;
+  transition: transform .3s ease, box-shadow .4s ease;
+}
+ 
+.header-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 30px 60px rgba(0,0,0,.35);
+}
+ 
+ 
+.section-header {
+  text-align: center;
+  margin: 0 auto 50px;
+}
+ 
+.section-header h2 {
+  font-size: 2.2rem;
+  margin: 6px 0 12px;
+  color: var(--blue-dark);
+}
+ 
+.section-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--orange);
+}
+ 
+.section-eyebrowtwo {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+}
+ 
+.section-eyebrowthree {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--lightb);
+}
+ 
+/* SECTION DIVIDERS */
+.section-divider,
+.section-dividertwo,
+.section-dividerthree {
+  width: 70px;
+  height: 4px;
+  margin: 0 auto;
+  border-radius: 3px;
+}
+ 
+ 
+.section-divider {
+  background: linear-gradient(to right, var(--orange), var(--blue-main));
+}
+ 
+.section-dividertwo {
+  background: linear-gradient(to right, var(--green), var(--blue-main));
+}
+ 
+.section-dividerthree {
+  background: linear-gradient(to right, var(--lightb), var(--blue-main));
+}
+ 
+
+ 
+/* HIGHLIGHTS */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+ 
+.highlight-box,
+.highlight-boxtwo {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+ 
+.highlight-box:hover,
+.highlight-boxtwo:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+}
+ 
+.highlight-box i,
+.highlight-boxtwo i {
+  font-size: 2.2rem;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+ 
+.section-header + section.highlights .highlight-boxtwo i {
+  color: var(--green);
+}
+ 
+.highlight-box h3,
+.highlight-boxtwo h3 {
+  min-height: 48px;
+  margin: 6px 0;
+  line-height: 1.3;
+}
+ 
+/* BOXES */
+.box {
+  background: white;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  transition: transform .3s ease;
+}
+ 
+.box i {
+  color: var(--orange);
+}
+ 
+.box:hover { transform: translateY(-4px); }
+ 
+.box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+/* CONTENT LAYOUT */
+.box-content {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+ 
+.text-contentLM { flex: 2; }
+
+.text-content { flex: 2; 
+ }
+
+.subtitle {
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--blue-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.password-tip {
+  background: #eef4fc;
+  border-left: 4px solid var(--blue-main);
+  padding: 14px 18px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+ 
+.label-list li {
+  margin-top: 8px;
+}
+
+.label-list li p {
+  margin: 4px 0 0;     /* reduces space under bold title */
+}
+
+.label-list li strong {
+  display: block;
+  margin-bottom: 6px; /* controls space BETWEEN bullets */
+  line-height: 1.35;  /* slightly tighter text */
+
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.image-content img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+ 
+/* BUTTONS */
+button {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  background: var(--orange);
+  color: white;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+ 
+/* LEARN MORE BUTTON - LARGER */
+.learn-more-btn {
+  padding: 14px 24px;     /* bigger click area */
+  font-size: 1rem;      /* larger text */      
+}
+ 
+button:hover { transform: scale(1.05); }
+
+/* PASSWORD CHECKER */
+.password-checker input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+
+@media (max-width: 768px) {
+  .password-checker {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hint-text {
+  background: #f3f8ff;
+  border-left: 4px solid var(--blue-main);
+  padding: 12px 16px;
+  margin: 16px 0 20px;
+  font-size: 0.95rem;
+  color: #2c3e50;
+  border-radius: 6px;
+
+}
+
+
+.password-field input {
+  border: 2px solid #6b7280; /* darker gray border */
+}
+
+
+.password-strength {
+  background: #e6e9f0;
+  height: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.strength-bar {
+  height: 100%;
+  width: 0%;
+  background: red;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.strength-text {
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+
+.password-rules {
+  list-style: none;
+  margin-top: 16px;
+  padding-left: 4px;
+
+}
+
+.password-rules li {
+  margin: 8px 0; 
+  font-weight: 500;
+   transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.password-rules li.valid {
+  color: var(--green);
+  transform: translateX(4px);
+}
+
+.show-password-btn {
+  background :var(--green);
+  margin-top: 8px;
+}
+ 
+.quiz button {
+  width: 100%;
+  margin: 6px 0;
+  background: var(--blue-main);
+  font-size: 1rem;
+ 
+
+}
+ 
+/* COLLAPSIBLE */
+.hidden {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .5s ease, opacity .3s ease;
+}
+ 
+.hidden.show {
+  max-height: 2000px;
+  opacity: 1;
+  margin-top: 10px;
+}
+ 
+
+ 
+/* FOOTER */
+footer {
+  text-align: center;
+  background: #dfeaf7;
+  padding: 18px;
+  font-size: .9rem;
+  color: #555;
+}
+.content-block {
+  max-width: 1100px;
+  margin: 0 auto 50px;
+  padding: 0 20px;   /* horizontal spacing only */
+}
+/* ANIMATIONS */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+ 
+</style>
+</head>
+ 
+<body>
+ 
+<body>
+ 
+ 
+<!-- HERO -->
+<div class="hero">
+  <header>
+    <div class="header-card">
+      <h1>Password Hygiene</h1>
+      <p>How to create strong passwords and manage them securely</p>
+    </div>
+  </header>
+</div>
+ 
+<!-- ===============================
+     AWARENESS & PREVENTION
+================================ -->
+<section class="content-block">
+ 
+  <div class="section-header">
+    <span class="section-eyebrow">Knowledge &amp; Prevention</span>
+    <h2>Protect Yourself</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="highlights">
+    <div class="highlight-box">
+      <i class="fa-solid fa-dumbbell"></i>
+      <h3>Long is Strong</h3>
+      <p>Each added character multiplies how hard it is to guess your password.</p>
+    </div>
+ 
+    <div class="highlight-box">
+      <i class="fa-solid fa-shuffle"></i>
+      <h3>Mix it up</h3>
+      <p>Use a mix of words and characters. Avoid easily guessed names or dates.</p>
+    </div>
+ 
+    <div class="highlight-box">
+      <i class="fa-solid fa-fingerprint"></i>
+      <h3>Keep them Unique </h3>
+      <p>Use different passwords for different accounts to protect from attackers.</p>
+    </div>
+ 
+    <div class="highlight-box">
+      <i class="fa-solid fa-lock"></i>
+      <h3>Use MFA & Managers</h3>
+      <p>Turn on MFA and use a password manager to stay protected even if passwords leak.</p>
+    </div>
+  </div>
+ 
+</section>
+ 
+<!-- ===============================
+     LEARN MORE
+================================ -->
+<section class="content-block">
+  <div class="box">
+
+    <div class="box-header">
+      <h2>
+        <i class="fa-solid fa-key"></i>
+        Understanding MFA and Password Managers
+      </h2>
+
+      <button class="learn-more-btn" onclick="toggle('mfa-info')">
+        Learn More
+      </button>
+    </div>
+
+    <div id="mfa-info" class="hidden">
+      <div class="box-content">
+
+        <div class="text-contentLM">
+          <p>
+            Strong account security goes beyond using a password.
+            Tools like Multi‑Factor Authentication (MFA) and password managers
+            add extra layers of protection against unauthorized access.
+          </p>
+
+          <p class="subtitle">What Is Multi‑Factor Authentication (MFA)?</p>
+
+          <p>
+            Multi‑Factor Authentication (MFA) requires more than one way to verify
+            your identity when signing in. Even if a password is stolen,
+            MFA helps prevent attackers from accessing the account.
+          </p>
+
+          <ul class="label-list">
+            <li><strong>Something you know:</strong> a password or PIN</li>
+            <li><strong>Something you have:</strong> a phone, security key, or authenticator app</li>
+            <li><strong>Something you are:</strong> biometrics such as fingerprint or face recognition</li>
+          </ul>
+
+          <p>
+            Common authenticator apps include
+            <strong>Microsoft Authenticator</strong> and
+            <strong>Google Authenticator</strong>.
+          </p>
+
+          <p class="subtitle">What Is a Password Manager?</p>
+
+          <p>
+            A password manager keeps all passwords safe in one encrypted vault, unlocked with one strong password.
+          </p>
+
+
+          <p class="subtitle">Common Types of Password Managers</p>
+
+          <ul class="label-list">
+            <li>
+              <strong>Dedicated password manager apps</strong>
+              <p>
+                Standalone tools designed to securely store and generate passwords
+                across devices using encryption and often MFA.
+                <em>Examples: 1Password, LastPass</em>
+              </p>
+            </li>
+
+            <li>
+              <strong>Browser‑based password managers</strong>
+              <p>
+                Built into web browsers such as Chrome, Edge, Firefox, and Safari/iCloud
+                Keychain. Their security depends on how well the browser and device
+                are protected, especially on shared devices.
+              </p>
+            </li>
+
+            <li>
+              <strong>Device or operating‑system password managers</strong>
+              <p>
+                Tools built into phones and operating systems (such as iOS and Android)
+                that sync passwords across linked devices.
+              </p>
+            </li>
+          </ul>
+
+          <p class="subtitle">Important Note for Work Accounts</p>
+
+          <p>
+            While MFA and password managers are commonly used for personal accounts,
+            workplace accounts must always follow organizational policies and use
+            approved tools.
+          </p>
+        </div>
+
+        <div class="image-content">
+          <img src="pass.jpg" alt="Illustration showing account security concepts" />
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- ===============================
+     Tips to create a safe passwords
+================================ -->
+<section class="content-block">
+
+  <div class="section-header">
+    <span class="section-eyebrowtwo">PASSWORD BEST PRACTICES</span>
+    <h2>How to Create a Strong Password</h2>
+    <div class="section-dividertwo"></div>
+  </div>
+<div class= "box">
+   <div class="box-content">
+ 
+          <div class="text-content">
+  <p>
+    Strong passwords help protect your accounts from unauthorized access.
+    One of the most effective ways to create, and remember, a secure password is to use a
+    passphrase instead of a single word.
+  </p>
+
+  <div class="password-tip">
+  <p class="subtitle">Tip: Use a Passphrase</p>
+  <p>
+    Combine three to four random words with numbers and symbols to create
+    a passphrase that is both strong and easier to remember.
+  </p>
+
+  <p>
+    Make each passphrase unique by adding a small twist for each account. An example of a twsit is a letter which represents the type of account or service. Avoid using sites or service names.
+    and avoid using exact site or service names.
+  </p>
+</div>
+
+
+  <p class="subtitle">Example:</p>
+
+  <ul class="label-list">
+    <li>
+      <strong>Email:</strong> SilverCarRunsFast!E5
+    </li>
+    <li>
+      <strong>Cloud:</strong> SilverCarRunsFast!C5
+    </li>
+  </ul>
+</div>
+
+   </div>
+</div>
+</section>
+
+ 
+ <!-- ===============================
+     INTERACTIVE PASSWORD SECURITY
+================================ -->
+<section class="content-block">
+
+  <div class="section-header">
+    <span class="section-eyebrowtwo">Interactive Exercise</span>
+    <h2>Create a Strong Password</h2>
+    <div class="section-dividertwo"></div>
+  </div>
+<div class= "box"> 
+<div class="password-checker">
+  <p class="hint-text">
+  Try creating a passphrase that meets all requirements below.
+</p>
+
+  <!-- ✅ NEW wrapper -->
+  <div class="password-field">
+    <input
+      type="password"
+      id="passwordInput"
+      placeholder="Enter a password"
+      oninput="checkPassword()"
+    />
+
+    
+<div class="password-strength">
+  <div class="strength-bar"></div>
+</div>
+<p class="strength-text">Password strength: Weak</p>
+
+
+    <button
+      type="button"
+      class="show-password-btn"
+      onclick="togglePassword(this)"
+    >
+      Show
+    </button>
+  </div>
+
+  <ul class="password-rules">
+    <li id="rule-length">❌ At least 12 characters</li>
+    <li id="rule-upper">❌ One uppercase letter</li>
+    <li id="rule-lower">❌ One lowercase letter</li>
+    <li id="rule-number">❌ One number</li>
+    <li id="rule-special">❌ One special character</li>
+  </ul>
+
+</div>
+</div>
+
+</section>
+
+ 
+<!-- ===============================
+     QUIZ
+================================ -->
+<section class="content-block">
+
+  <div class="section-header">
+    <span class="section-eyebrowthree">Learning Check</span>
+    <h2>Cyber Security Quiz</h2>
+    <div class="section-dividerthree"></div>
+  </div>
+
+  <div class="quiz">
+    <div class="box">
+
+      <p><b>1. Which password choice is more secure in practice?</b></p>
+      <button onclick="wrong(this)">
+        A short password with lots of numbers and special characters
+      </button>
+      <button onclick="correct(this)">
+        A long passphrase made of multiple unrelated words that is used only once
+      </button>
+      <button onclick="wrong(this)">
+        A complex password that the account holder slightly modifies for each account
+      </button>
+
+      <p><b>2. In which situation would a built‑in browser password manager present a higher security risk for the account holder?</b></p>
+      <button onclick="wrong(this)">
+        When it is used on a regularly updated personal device protected by a strong login
+      </button>
+      <button onclick="correct(this)">
+        When it is used on a shared or lightly protected device where browser access is easy
+      </button>
+      <button onclick="wrong(this)">
+        When it stores passwords for accounts that do not require frequent sign‑ins
+      </button>
+
+      <p><b>3. How could someone gain access to an account even when MFA is turned on?</b></p>
+      <button onclick="wrong(this)">
+        MFA stops working after the password reaches its expiry date
+      </button>
+      <button onclick="correct(this)">
+        The account holder approves a sign‑in request or enters a verification code in response to a sign‑in page
+      </button>
+      <button onclick="wrong(this)">
+        MFA gradually becomes less effective the longer it is enabled
+      </button>
+      <p><b>4. Is the following an example of a strong password?</b></p>
+<p><em>Password: Summer2024!</em></p>
+
+<button onclick="wrong(this)">Yes</button>
+<button onclick="correct(this)">No</button>
+      
+
+    </div>
+  </div>
+
+</section>
+ 
+ 
+ 
+<footer>
+Cyber Security Awareness
+• Images from Freepik
+</footer>
+ 
+<script>
+function toggle(id) {
+  document.getElementById(id).classList.toggle("show");
+}
+ 
+ 
+function correct(btn) {
+  const originalText = btn.innerHTML;
+ 
+  btn.style.backgroundColor = "green";
+  btn.innerHTML = "✅ Correct!";
+  btn.disabled = true;
+ 
+  setTimeout(() => {
+    btn.innerHTML = originalText;
+  }, 900);
+}
+ 
+ 
+function wrong(btn) {
+  const original = btn.innerHTML;
+  btn.style.backgroundColor = "red";
+  btn.innerHTML = "❌ Try Again";
+ 
+  setTimeout(() => {
+    btn.style.backgroundColor = "#3a7bd5";
+    btn.innerHTML = original;
+  }, 900);
+}
+ 
+
+
+function checkPassword() {
+  const password = document.getElementById("passwordInput").value;
+
+  const rules = {
+    length: password.length >= 12,
+    upper: /[A-Z]/.test(password),
+    lower: /[a-z]/.test(password),
+    number: /[0-9]/.test(password),
+    special: /[^A-Za-z0-9]/.test(password)
+  };
+
+  // Update rule checklist
+  updateRule("rule-length", rules.length);
+  updateRule("rule-upper", rules.upper);
+  updateRule("rule-lower", rules.lower);
+  updateRule("rule-number", rules.number);
+  updateRule("rule-special", rules.special);
+
+  // ✅ Strength logic
+  const strengthBar = document.querySelector(".strength-bar");
+  const strengthText = document.querySelector(".strength-text");
+
+  // Count how many rules passed
+  const score = Object.values(rules).filter(Boolean).length;
+
+  if (score <= 2) {
+    strengthBar.style.width = "20%";
+    strengthBar.style.backgroundColor = "#e74c3c";
+    strengthText.textContent = "Password strength: Weak";
+  } else if (score <= 4) {
+    strengthBar.style.width = "60%";
+    strengthBar.style.backgroundColor = "#f1c40f";
+    strengthText.textContent = "Password strength: Medium";
+  } else {
+    strengthBar.style.width = "100%";
+    strengthBar.style.backgroundColor = "#2ecc71";
+    strengthText.textContent = "Password strength: Strong";
+  }
+}
+
+
+function updateRule(id, passed) {
+  const el = document.getElementById(id);
+  el.textContent = passed
+    ? "✅ " + el.textContent.substring(2)
+    : "❌ " + el.textContent.substring(2);
+
+  el.style.color = passed ? "green" : "red";
+}
+
+function togglePassword(btn) {
+  const input = document.getElementById("passwordInput");
+
+  if (input.type === "password") {
+    input.type = "text";
+    btn.textContent = "Hide";
+  } else {
+    input.type = "password";
+    btn.textContent = "Show";
+  }
+}
+
+ 
+</script>
+ 
+</body>
+ 
+ 
+</html>
